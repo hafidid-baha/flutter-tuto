@@ -14,7 +14,11 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[100],
       ),
       body: Center(
-        child: Image.asset("assets/family.jpg")
+        child: Icon(
+          Icons.threed_rotation,
+          color: Colors.blue[300],
+          size: 50.0,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>{},
