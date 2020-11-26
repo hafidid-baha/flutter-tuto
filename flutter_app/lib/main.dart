@@ -14,12 +14,15 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[100],
       ),
       body: Center(
-        child: FlatButton(
+        child: RaisedButton.icon(
           onPressed: ()=>{
-            print("you just pressed the button")
+            print("you have clicked the snooz button")
           },
-          child: Text("press me"),
-          color: Colors.lightGreen,
+          icon: Icon(
+            Icons.access_alarm
+          ),
+          label: Text("snooz"),
+          color: Colors.yellow[300],
         ),
       ),
       floatingActionButton: FloatingActionButton(
