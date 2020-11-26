@@ -14,10 +14,12 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[100],
       ),
       body: Center(
-        child: Icon(
-          Icons.threed_rotation,
-          color: Colors.blue[300],
-          size: 50.0,
+        child: RaisedButton(
+          onPressed: ()=>{
+            print("you just pressed the button")
+          },
+          child: Text("press me"),
+          color: Colors.lightGreen,
         ),
       ),
       floatingActionButton: FloatingActionButton(
