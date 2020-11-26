@@ -13,16 +13,11 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red[100],
       ),
-      body: Center(
-        child: IconButton(
-          onPressed: ()=>{
-            print("you have clicked the snooz button")
-          },
-          icon: Icon(
-            Icons.access_alarm
-          ),  
-          color: Colors.yellow[300],
-        ),
+      body: Container(
+        padding: EdgeInsets.all(30),
+        color: Colors.lightGreen,
+        margin: EdgeInsets.all(30),
+        child: Text('hello this is my text inside a container'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>{},
