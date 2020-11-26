@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[100],
       ),
       body: Center(
-        child: RaisedButton(
+        child: FlatButton(
           onPressed: ()=>{
             print("you just pressed the button")
           },
