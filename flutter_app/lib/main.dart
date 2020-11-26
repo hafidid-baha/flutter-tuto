@@ -14,14 +14,13 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[100],
       ),
       body: Center(
-        child: RaisedButton.icon(
+        child: IconButton(
           onPressed: ()=>{
             print("you have clicked the snooz button")
           },
           icon: Icon(
             Icons.access_alarm
-          ),
-          label: Text("snooz"),
+          ),  
           color: Colors.yellow[300],
         ),
       ),
