@@ -9,6 +9,7 @@ class Card extends StatefulWidget {
 }
 
 class _CardState extends State<Card> {
+  int level = 1;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +20,17 @@ class _CardState extends State<Card> {
           centerTitle: true,
           backgroundColor: Colors.grey[850],
           elevation: 0.0,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            setState(() {
+              level++;
+            });
+          },
+          backgroundColor: Colors.grey[800],
+          child: Icon(
+            Icons.add
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(30, 40, 30, 40),
@@ -63,7 +75,7 @@ class _CardState extends State<Card> {
               ),
               SizedBox(height: 10),
               Text(
-                "10",
+                "$level",
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   color: Colors.yellow[400],
