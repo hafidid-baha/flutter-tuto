@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'quote.dart';
 import 'qoute_card.dart';
 
@@ -30,7 +31,11 @@ class _QuotesListState extends State<QuotesList> {
         backgroundColor: Colors.black26,
       ),
       body: Column(
-        children: quotes.map((q) => QuoteCard(quote: q)).toList(),
+        children: quotes.map((q) => QuoteCard(quote: q,delete: (){
+          setState(() {
+            quotes.remove(q);
+          });
+        },)).toList(),
       ),
     );
   }
