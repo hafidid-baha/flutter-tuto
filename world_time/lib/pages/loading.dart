@@ -9,16 +9,20 @@ class Loadign extends StatefulWidget {
 
 class _LoadignState extends State<Loadign> {
 
-  void getData() async{
-    Response todo = await get("https://jsonplaceholder.typicode.com/todos/1");
-    Map data = jsonDecode(todo.body);
-    print(data);
+  void getTime() async{
+    Response response = await get("https://worldtimeapi.org/api/timezone/Africa/Casablanca");
+    Map data = jsonDecode(response.body);
+    String datetime = data['utc_datetime'];
+    String offset = data['utc_offset'].substring(1,3);
+    DateTime now = DateTime.parse(datetime);
+    now.add(Duration(hours: int.parse(offset)));
+    print(now);
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
   @override
   Widget build(BuildContext context) {
