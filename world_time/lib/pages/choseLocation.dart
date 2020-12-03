@@ -9,6 +9,10 @@ class _ChoseLocationState extends State<ChoseLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text("Change Location"),
+      ),
       body: SafeArea(
         child: Text('this is the chose location page '),
       ),
