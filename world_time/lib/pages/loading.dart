@@ -7,15 +7,12 @@ class Loadign extends StatefulWidget {
 }
 
 class _LoadignState extends State<Loadign> {
-
-  String time;
-
   void getTime() async{
-    time = "Loading";
     WorldTime instance = WorldTime(location: "Casablanca",url: "Africa/Casablanca");
     await instance.getTime();
-    setState(() {
-      time = instance.time;
+    Navigator.pushReplacementNamed(context, "/home",arguments: {
+      "location":instance.location,
+      "time":instance.time,
     });
   }
 
@@ -30,7 +27,7 @@ class _LoadignState extends State<Loadign> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(time),
+          child: Text("Wait Intel The Data Is Loaded ..."),
         ),
       ),
     );
