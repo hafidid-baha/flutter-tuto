@@ -28,7 +28,10 @@ class _LoadignState extends State<Loadign> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Text(time),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(time),
+        ),
       ),
     );
   }
