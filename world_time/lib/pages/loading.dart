@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
+import 'package:world_time/services/world_time.dart';
 
 class Loadign extends StatefulWidget {
   @override
@@ -9,14 +8,15 @@ class Loadign extends StatefulWidget {
 
 class _LoadignState extends State<Loadign> {
 
+  String time;
+
   void getTime() async{
-    Response response = await get("https://worldtimeapi.org/api/timezone/Africa/Casablanca");
-    Map data = jsonDecode(response.body);
-    String datetime = data['utc_datetime'];
-    String offset = data['utc_offset'].substring(1,3);
-    DateTime now = DateTime.parse(datetime);
-    now.add(Duration(hours: int.parse(offset)));
-    print(now);
+    time = "Loading";
+    WorldTime instance = WorldTime(location: "Casablanca",url: "Africa/Casablanca");
+    await instance.getTime();
+    setState(() {
+      time = instance.time;
+    });
   }
 
   @override
@@ -28,7 +28,7 @@ class _LoadignState extends State<Loadign> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Text('this is the loading page'),
+        child: Text(time),
       ),
     );
   }
