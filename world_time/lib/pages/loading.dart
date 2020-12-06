@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:world_time/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loadign extends StatefulWidget {
   @override
@@ -24,10 +25,13 @@ class _LoadignState extends State<Loadign> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow[200],
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text("Wait Intel The Data Is Loaded ..."),
+        child: Center(
+          child: SpinKitRotatingCircle(
+            color: Colors.white,
+            size: 50.0,
+          )
         ),
       ),
     );
