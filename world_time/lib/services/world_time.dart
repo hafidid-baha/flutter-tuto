@@ -22,6 +22,7 @@ class WorldTime{
       time = DateFormat.jm().format(now);
     }catch(e){
       time = "failed to fetch data";
+      isDayTime= false;
     }
 
   }

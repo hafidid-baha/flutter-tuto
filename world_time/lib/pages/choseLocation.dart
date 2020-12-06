@@ -31,7 +31,15 @@ class _ChoseLocationState extends State<ChoseLocation> {
         itemBuilder: (context,index){
           return Card(
             child: ListTile(
-              onTap: (){},
+              onTap: ()async{
+                WorldTime instance = locations[index];
+                await instance.getTime();
+                Navigator.pop(context,{
+                  "location":instance.location,
+                  "time":instance.time,
+                  "isDayTime":instance.isDayTime,
+                });
+              },
               title: Text(locations[index].location),
             ),
           );
