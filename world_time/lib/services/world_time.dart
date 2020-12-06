@@ -6,6 +6,7 @@ class WorldTime{
   String time;
   String location;
   String url;
+  bool isDayTime;
 
   WorldTime({this.location,this.url});
 
@@ -17,6 +18,7 @@ class WorldTime{
       String offset = data['utc_offset'].substring(1,3);
       DateTime now = DateTime.parse(datetime);
       now.add(Duration(hours: int.parse(offset)));
+      isDayTime = now.hour >6 && now.hour < 20?true:false;
       time = DateFormat.jm().format(now);
     }catch(e){
       time = "failed to fetch data";

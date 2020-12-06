@@ -14,6 +14,7 @@ class _LoadignState extends State<Loadign> {
     Navigator.pushReplacementNamed(context, "/home",arguments: {
       "location":instance.location,
       "time":instance.time,
+      "isDayTime":instance.isDayTime,
     });
   }
 
