@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lazy_loading/imageItem.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Lazy Loading In Flutter'),
     );
   }
 }
@@ -28,12 +30,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  List data;
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    data = List.generate(100, (index) => ImageItem(url: "",content: "item $index"));
   }
 
   @override
@@ -42,19 +49,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, position) {
+          return Card(
+            child: ListTile(
+                title: Text('item number $position'),
+                subtitle: Text('this is the item number $position create by list generator')
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
