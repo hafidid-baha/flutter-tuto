@@ -30,17 +30,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List data;
+  List<int> data = [];
+  int currentLength = 0;
 
-  void _incrementCounter() {
-    setState(() {
-    });
-  }
+  final int increment = 10;
+  bool isLoading = false;
 
   @override
   void initState() {
+    loadMore();
     super.initState();
-    data = List.generate(100, (index) => ImageItem(url: "",content: "item $index"));
+    //data = List.generate(100, (index) => ImageItem(url: "",content: "item $index"));
+  }
+
+  Future loadMore() async{
+    setState(() {
+      isLoading = true;
+    });
+
+    await Future.delayed(Duration(seconds: 2));
+    for(var i = currentLength;i <= currentLength+increment;i++){
+      data.add(i);
+    }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -49,19 +63,24 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, position) {
-          return Card(
-            child: ListTile(
-                title: Text('item number $position'),
-                subtitle: Text('this is the item number $position create by list generator')
-            ),
-          );
-        },
+      body: LazyLoadScrollView(
+        scrollOffset: 100,
+        isLoading: isLoading,
+        onEndOfPage: () => loadMore(),
+        child: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, position) {
+            return Card(
+              child: ListTile(
+                  title: Text('item number $position'),
+                  subtitle: Text('this is the item number $position create by list generator')
+              ),
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
