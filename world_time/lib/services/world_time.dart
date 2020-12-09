@@ -11,9 +11,9 @@ class WorldTime{
   WorldTime({this.location,this.url});
 
   Future<void> getTime() async{
+    Response response = await get(Uri.decodeFull("https://worldtimeapi.org/api/timezone/$url"));
     try{
-      Response response = await get("https://worldtimeapi.org/api/timezone/$url");
-      Map data = jsonDecode(response.body);
+      Map data = json.decode(response.body);
       String datetime = data['utc_datetime'];
       String offset = data['utc_offset'].substring(1,3);
       DateTime now = DateTime.parse(datetime);
